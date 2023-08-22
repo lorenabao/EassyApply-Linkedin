@@ -47,6 +47,20 @@ class EasyApplyLinkedin:
         search_button.click()
 
 
+    def filter(self):
+        """This function filters all the job results by 'Easy Apply'"""
+        
+
+         # Select all filters, click on Easy Apply and apply the filter
+        all_filters_button = self.driver.find_element_by_css_selector(".artdeco-pill.artdeco-pill--slate.artdeco-pill--choice.artdeco-pill--2.search-reusables__filter-pill-button.search-reusables__filter-pill-button.search-reusables__all-filters-pill-button")
+        all_filters_button.click()
+        easy_apply_button = self.driver.find_element_by_xpath("//input[@class, 'input artdeco-toggle__button']")
+        easy_apply_button.click()
+        all_filters_button = self.driver.find_element_by_css_selector("//button[@data-test-reusables-filters-modal-show-results-button='true']")
+        all_filters_button.click()
+       
+
+
 if __name__ == "__main__":
     with open('config.json') as config_file:
         data = json.load(config_file)
@@ -54,3 +68,4 @@ if __name__ == "__main__":
     bot = EasyApplyLinkedin(data)
     bot.login_linkedin()
     bot.job_search()
+    bot.filter()
